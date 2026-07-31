@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+processed_data/*.pkl
+processed_data/*_chunks.json
+*.log
+.streamlit/

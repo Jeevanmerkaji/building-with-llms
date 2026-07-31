@@ -1,0 +1,42 @@
+[
+  {
+    "code": "ALM-4021",
+    "title": "Spindle Overload",
+    "severity": "high",
+    "description": "Spindle drive current exceeded 115% of rated load for more than 3 seconds.",
+    "recommended_action": "Check tool wear, verify programmed feed rate against material spec, confirm coolant flow to spindle bearing jacket. Do not reset and re-run without addressing root cause.",
+    "source": "apex3200_alarms.json"
+  },
+  {
+    "code": "ALM-4022",
+    "title": "Spindle Overtemp",
+    "severity": "high",
+    "description": "Bearing temperature sensor exceeded 85C.",
+    "recommended_action": "Stop spindle immediately, allow minimum 30-minute cooldown, check coolant jacket flow rate.",
+    "source": "apex3200_alarms.json"
+  },
+  {
+    "code": "ALM-4030",
+    "title": "Spindle Orientation Timeout",
+    "severity": "medium",
+    "description": "Spindle failed to reach tool-change orientation within 2 seconds.",
+    "recommended_action": "Check encoder for fault, inspect tool-change carousel for mechanical obstruction.",
+    "source": "apex3200_alarms.json"
+  },
+  {
+    "code": "ALM-1104",
+    "title": "X-Axis Positioning Deviation",
+    "severity": "medium",
+    "description": "Measured axis position deviates from commanded position beyond tolerance.",
+    "recommended_action": "Check backlash compensation value under Axis > Backlash Compensation. Rising frequency of this alarm is an early indicator of ball screw wear.",
+    "source": "apex3200_alarms.json"
+  },
+  {
+    "code": "ALM-1105",
+    "title": "Y-Axis Positioning Deviation",
+    "severity": "medium",
+    "description": "Measured axis position deviates from commanded position beyond tolerance.",
+    "recommended_action": "Check backlash compensation value under Axis > Backlash Compensation. Rising frequency of this alarm is an early indicator of ball screw wear.",
+    "source": "apex3200_alarms.json"
+  }
+]
