@@ -3,6 +3,15 @@ machine controller. Large tap targets, minimal typing, big text.
 
 Run with: streamlit run ui/hmi_chat.py
 """
+import sys
+from pathlib import Path
+
+# Streamlit puts this script's own directory on sys.path, not the project
+# root, so the `app` package import below would fail without this -- unlike
+# `python -m app...` or `uvicorn app.main:app`, which both run from the
+# project root and don't need it.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 import streamlit as st
 from app.agents.graph import run_query
 from app.config import settings

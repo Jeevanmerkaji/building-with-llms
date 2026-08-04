@@ -1,6 +1,11 @@
 """Internal QA view of the eval suite — run with:
     streamlit run evals/app.py
 """
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 import streamlit as st
 from evals.pipeline import run
 
