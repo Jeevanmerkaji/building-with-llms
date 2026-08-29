@@ -4,7 +4,8 @@
 ## Projects
 
 - [`machine-copilot/`](machine-copilot/) — an embedded, retrieval-grounded AI assistant for CNC machines: real ingestion, retrieval + reranking, a LangGraph agent, rule-based guardrails, simulated telemetry/predictive-maintenance, and three Streamlit UIs, with a mandatory eval gate before release.
+- [`multi-agent-customer-support/`](multi-agent-customer-support/) — a self-contained Claude customer-support demo showing an agentic tool-use loop, coordinator/subagent delegation, structured context passing, and human escalation.
 
 ## Last updated
 
-2026-07-31
+2026-08-29
