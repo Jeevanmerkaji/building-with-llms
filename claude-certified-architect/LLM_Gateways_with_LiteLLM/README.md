@@ -23,13 +23,16 @@ source .venv/bin/activate
 uv pip install -r requirements.txt
 ```
 
-Fill in `.env`:
+Fill in `.env` — no spaces around `=`, no quotes (some tools, notably `docker run --env-file`, parse this strictly):
 
 ```
 ANTHROPIC_API_KEY=sk-ant-...
 OPENAI_API_KEY=sk-...
-LITELLM_MASTER_KEY=sk-litellm-local-dev   # any string, for local dev
+LITELLM_MASTER_KEY=sk-litellm-local-dev
+LITELLM_SALT_KEY=<a long random value>
 ```
+
+`LITELLM_MASTER_KEY` isn't issued by anyone — you invent it yourself (any string; generate one with `openssl rand -hex 32`). `LITELLM_SALT_KEY` is only needed for Option C below (it encrypts provider keys stored in the database).
 
 ## Run
 
@@ -65,6 +68,24 @@ python gateways.py
 
 Stop it with `docker rm -f litellm-proxy`. `gateways.py` doesn't know or care which one is serving port 4000 — that's the point of routing everything through the proxy's OpenAI-compatible API.
 
+### Option C: Docker Compose, with Postgres — needed for the admin UI
+
+Options A and B don't have a database, which is fine for the `/chat/completions` API but breaks the browser dashboard at `http://localhost:4000/ui` — login fails with `Not connected to DB!` without one. `docker-compose.yml` adds Postgres alongside LiteLLM to fix that, matching the official ["standard deployment"](https://docs.litellm.ai/docs/proxy/docker_quick_start).
+
+Requires the `docker compose` plugin (`sudo apt-get install docker-compose-plugin` if you don't have it).
+
+```bash
+docker compose up -d
+```
+
+First boot runs Prisma DB migrations and takes noticeably longer than Option B (a minute or so) — check readiness with:
+
+```bash
+curl http://localhost:4000/health/readiness   # {"status":"healthy","db":"connected"} once ready
+```
+
+Then log into `http://localhost:4000/ui` with username `admin` and your `LITELLM_MASTER_KEY` as the password. Stop the stack with `docker compose down` (add `-v` to also wipe the Postgres volume).
+
 ## Status
 
-Both ways of running the proxy verified working: `litellm --config config.yaml` and the Docker container both boot cleanly, register both models, pass `/health/liveliness`, and correctly enforce `LITELLM_MASTER_KEY` on requests. Not yet covered: caching, rate limiting, and guardrails — those are still just notes in `test.ipynb`.
+All three ways of running the proxy verified working end-to-end (including a real `claude-haiku-4-5` completion through each): the venv CLI, plain Docker, and Docker Compose with Postgres (confirmed `db":"connected"` on `/health/readiness` and successful UI-style auth). Not yet covered: caching, rate limiting, and guardrails — those are still just notes in `test.ipynb`.
