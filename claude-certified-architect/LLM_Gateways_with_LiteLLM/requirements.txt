@@ -3,6 +3,6 @@ uvicorn[standard]
 jinja2
 python-multipart
 python-dotenv
-litellm
+litellm[proxy]
 pydantic
 requests
