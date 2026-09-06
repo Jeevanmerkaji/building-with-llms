@@ -1,0 +1,21 @@
+services:
+  app:
+    build: .
+    command: streamlit run app.py --server.address=0.0.0.0
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    environment:
+      PROXY_URL: http://host.docker.internal:4000
+
+  eval:
+    build: .
+    command: python evaluate.py
+    env_file:
+      - .env
+    environment:
+      PROXY_URL: http://host.docker.internal:4000
+    # profile : [tools] keeps it out of the 'docker-compose up' by default
+    profiles:
+      - tools
