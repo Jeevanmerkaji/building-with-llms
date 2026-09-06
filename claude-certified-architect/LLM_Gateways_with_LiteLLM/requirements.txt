@@ -6,3 +6,4 @@ python-dotenv
 litellm[proxy]
 pydantic
 requests
+streamlit
