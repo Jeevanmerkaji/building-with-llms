@@ -7,3 +7,5 @@ litellm[proxy]
 pydantic
 requests
 streamlit
+portkey-ai
+groq
