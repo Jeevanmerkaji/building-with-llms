@@ -1,0 +1,13 @@
+{% set n = items|length %}{% set cw = (1120 - (n-1)*20) // n %}
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" font-family="{{ b.font }}">
+  <rect width="1200" height="440" rx="28" fill="{{ b.surface }}"/>
+  <text x="40" y="80" font-size="40" font-weight="700" fill="{{ b.ink }}">{{ title|e }}</text>
+  {% for it in items %}{% set x = 40 + loop.index0*(cw+20) %}
+  <rect x="{{ x }}" y="120" width="{{ cw }}" height="250" rx="20" fill="{{ b.card }}"/>
+  <circle cx="{{ x + 44 }}" cy="170" r="26" fill="{{ b.palette[loop.index0 % 5] }}"/>
+  <text x="{{ x + 44 }}" y="180" font-size="28" font-weight="800" text-anchor="middle" fill="#fff">{{ loop.index }}</text>
+  <text x="{{ x + 20 }}" y="240" font-size="28" font-weight="700" fill="{{ b.ink }}">{{ it.title|e }}</text>
+  <text x="{{ x + 20 }}" y="280" font-size="21" fill="{{ b.muted }}">{{ it.desc|e }}</text>
+  {% endfor %}
+  <text x="40" y="415" font-size="20" fill="{{ b.muted }}">Source: {{ source_label|e }}</text>
+</svg>

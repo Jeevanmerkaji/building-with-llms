@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ c.title|e }} · {{ b.name|e }}</title>
+<meta name="description" content="{{ c.preheader|e }}">
+<style>
+:root{--primary:{{ b.primary }};--ink:{{ b.ink }};--muted:{{ b.muted }};--surface:{{ b.surface }};--card:{{ b.card }}}
+@media (prefers-color-scheme:dark){:root{--ink:#F3F4F6;--muted:#9CA3AF;--surface:#0B1020;--card:#151B2E}}
+*{box-sizing:border-box}body{margin:0;background:var(--surface);color:var(--ink);font:18px/1.7 {{ b.font }}}
+header{background:linear-gradient(135deg,var(--primary),#7C3AED);color:#fff;padding:64px 20px 56px}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}header .wrap{padding:0}
+.kicker{font-size:13px;letter-spacing:.15em;text-transform:uppercase;opacity:.85}
+h1{font-size:clamp(30px,6vw,48px);line-height:1.1;margin:.3em 0}.intro{font-size:20px;opacity:.92;margin:0}
+main .wrap{padding-top:24px;padding-bottom:40px}
+section{background:var(--card);border-radius:20px;padding:28px 28px 20px;margin:24px 0;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+h2{margin:0 0 .4em;font-size:26px;line-height:1.25}img{width:100%;height:auto;border-radius:14px;margin:12px 0}
+.src{font-size:13px;color:var(--muted)}.src a,a{color:var(--primary)}.src a{color:var(--muted)}
+.take{background:var(--card);border-left:6px solid var(--primary);border-radius:12px;padding:8px 24px}
+footer{color:var(--muted);font-size:13px;text-align:center;padding:24px 20px 48px}
+</style></head><body>
+<header><div class="wrap"><div class="kicker">{{ b.name|e }} · {{ c.date|e }}</div><h1>{{ c.title|e }}</h1><p class="intro">{{ c.intro|e }}</p></div></header>
+<main><div class="wrap">
+{% for s in c.sections %}<section><h2>{{ s.heading|e }}</h2>
+{% for p in s.body %}<p>{{ p|e }}</p>{% endfor %}
+{% if s.bullets %}<ul>{% for x in s.bullets %}<li>{{ x|e }}</li>{% endfor %}</ul>{% endif %}
+{% if s.infographic %}<img src="{{ image_base }}/{{ loop.index0 }}.png" alt="{{ s.infographic.alt|e }}">{% endif %}
+{% if s.sources %}<p class="src">Sources: {% for u in s.sources %}<a href="{{ u }}">{{ u|replace('https://','')|replace('http://','')|replace('www.','')|truncate(48, True, '…') }}</a>{{ ', ' if not loop.last }}{% endfor %}</p>{% endif %}
+</section>{% endfor %}
+<div class="take"><h3>Key takeaways</h3><ol>{% for t in c.takeaways %}<li>{{ t|e }}</li>{% endfor %}</ol></div>
+</div></main>
+<footer>{{ c.footer.address|e }} · <a href="{{ c.footer.unsubscribe_url }}">Unsubscribe</a></footer>
+</body></html>

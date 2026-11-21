@@ -1,0 +1,12 @@
+{% set n = items|length %}{% set step = (1120 // (n-1)) if n > 1 else 0 %}
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" font-family="{{ b.font }}">
+  <rect width="1200" height="460" rx="28" fill="{{ b.surface }}"/>
+  <text x="40" y="80" font-size="40" font-weight="700" fill="{{ b.ink }}">{{ title|e }}</text>
+  <line x1="130" y1="200" x2="1070" y2="200" stroke="{{ b.muted }}" stroke-width="4"/>
+  {% for it in items %}{% set x = 130 + loop.index0*((940 // (n-1)) if n > 1 else 0) %}
+  <circle cx="{{ x }}" cy="200" r="18" fill="{{ b.palette[loop.index0 % 5] }}" stroke="{{ b.card }}" stroke-width="6"/>
+  <text x="{{ x }}" y="275" font-size="30" font-weight="800" text-anchor="middle" fill="{{ b.palette[loop.index0 % 5] }}">{{ it.when|e }}</text>
+  <text x="{{ x }}" y="318" font-size="22" text-anchor="middle" fill="{{ b.ink }}">{{ it.what|e }}</text>
+  {% endfor %}
+  <text x="40" y="436" font-size="20" fill="{{ b.muted }}">Source: {{ source_label|e }}</text>
+</svg>

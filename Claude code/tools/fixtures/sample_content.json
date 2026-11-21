@@ -1,0 +1,28 @@
+{
+  "title": "Sample Issue: The State of Solar",
+  "subject_variants": ["Solar is eating the grid (fixture)", "Why solar keeps beating forecasts"],
+  "preheader": "Fixture content for testing the pipeline. Numbers are placeholders.",
+  "date": "Oct 28, 2026",
+  "intro": "Placeholder issue used to test rendering. Figures here are illustrative, not real data.",
+  "sections": [
+    {"heading": "The big picture", "body": ["First paragraph of placeholder copy to check typography and line length in both email and web layouts.", "A second paragraph confirms spacing between blocks."],
+     "bullets": ["Placeholder point one", "Placeholder point two"],
+     "infographic": {"template": "stat_row", "title": "Solar at a glance", "alt": "Three stats: 40% share, 3x growth, 12 years payback (placeholder).", "source": "https://example.com/data",
+       "items": [{"value": "40%", "label": "Share of new capacity"}, {"value": "3x", "label": "Growth since 2020"}, {"value": "12 yrs", "label": "Typical payback"}]},
+     "sources": ["https://example.com/data"]},
+    {"heading": "How regions compare", "body": ["Bar comparison infographic follows."],
+     "infographic": {"template": "bar_comparison", "title": "Installed GW by region", "unit": " GW", "alt": "Bar chart: Asia 600, Europe 250, Americas 200 GW (placeholder).", "source": "https://example.com/regions",
+       "items": [{"label": "Asia", "value": 600}, {"label": "Europe", "value": 250}, {"label": "Americas", "value": 200}]},
+     "sources": ["https://example.com/regions"]},
+    {"heading": "Where it goes next", "body": ["Timeline and process graphics follow."],
+     "infographic": {"template": "timeline", "title": "Roadmap", "alt": "Timeline 2026 to 2030 (placeholder).", "source": "https://example.com/roadmap",
+       "items": [{"when": "2026", "what": "Storage boom"}, {"when": "2027", "what": "Grid upgrades"}, {"when": "2028", "what": "Cost parity"}, {"when": "2030", "what": "Majority share"}]},
+     "sources": ["https://example.com/roadmap"]},
+    {"heading": "How it works", "body": ["Four steps."],
+     "infographic": {"template": "process", "title": "From sunlight to socket", "alt": "Four step process (placeholder).", "source": "https://example.com/how",
+       "items": [{"title": "Capture", "desc": "Panels absorb light"}, {"title": "Convert", "desc": "Inverter makes AC"}, {"title": "Store", "desc": "Battery buffers"}, {"title": "Deliver", "desc": "Grid distributes"}]},
+     "sources": ["https://example.com/how"]}
+  ],
+  "takeaways": ["Takeaway one (placeholder)", "Takeaway two (placeholder)", "Takeaway three (placeholder)"],
+  "footer": {"address": "123 Example St, Sample City (placeholder)", "unsubscribe_url": "https://example.com/unsub", "web_url": "https://example.com/issue"}
+}

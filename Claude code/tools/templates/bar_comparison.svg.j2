@@ -1,0 +1,12 @@
+{% set h = 170 + items|length*70 %}{% set mx = items|map(attribute='value')|max %}{% set bw = 700 %}
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="{{ h }}" viewBox="0 0 1200 {{ h }}" font-family="{{ b.font }}">
+  <rect width="1200" height="{{ h }}" rx="28" fill="{{ b.surface }}"/>
+  <text x="40" y="80" font-size="40" font-weight="700" fill="{{ b.ink }}">{{ title|e }}</text>
+  {% for it in items %}{% set y = 130 + loop.index0*70 %}
+  <text x="40" y="{{ y + 34 }}" font-size="26" fill="{{ b.ink }}">{{ it.label|e }}</text>
+  <rect x="300" y="{{ y }}" width="{{ bw }}" height="46" rx="10" fill="{{ b.card }}"/>
+  <rect x="300" y="{{ y }}" width="{{ [(it.value / mx * bw)|round|int, 8]|max }}" height="46" rx="10" fill="{{ b.palette[loop.index0 % 5] }}"/>
+  <text x="{{ 1020 }}" y="{{ y + 34 }}" font-size="28" font-weight="700" fill="{{ b.ink }}">{{ it.value }}{{ unit|e }}</text>
+  {% endfor %}
+  <text x="40" y="{{ h - 24 }}" font-size="20" fill="{{ b.muted }}">Source: {{ source_label|e }}</text>
+</svg>
