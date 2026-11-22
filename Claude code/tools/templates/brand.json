@@ -1,0 +1,11 @@
+{
+  "name": "The Brief",
+  "primary": "#4F46E5",
+  "accent": "#F59E0B",
+  "ink": "#111827",
+  "muted": "#6B7280",
+  "surface": "#F3F4F6",
+  "card": "#FFFFFF",
+  "font": "Helvetica, Arial, sans-serif",
+  "palette": ["#4F46E5", "#06B6D4", "#F59E0B", "#10B981", "#EF4444"]
+}

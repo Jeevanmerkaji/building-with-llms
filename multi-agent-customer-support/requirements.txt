@@ -1,0 +1,19 @@
+# Core
+deepagents
+langchain
+langgraph
+langchain-core
+
+# Model providers (install the ones you use)
+langchain-anthropic
+# langchain-openai
+# langchain-google-genai
+
+# Tools used in the Deep Agents examples
+tavily-python          # web search
+# langchain-mcp-adapters  # only if you use MCP tools
+
+# Config and tooling
+python-dotenv          # load API keys from .env
+# langgraph-cli[inmem] # only for `langgraph dev` and LangGraph Studio
+# langsmith            # tracing (optional)

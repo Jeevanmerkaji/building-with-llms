@@ -1,0 +1,45 @@
+<mjml>
+  <mj-head>
+    <mj-title>{{ c.title|e }}</mj-title>
+    <mj-preview>{{ c.preheader|e }}</mj-preview>
+    <mj-attributes>
+      <mj-all font-family="{{ b.font }}" />
+      <mj-text font-size="16px" line-height="26px" color="{{ b.ink }}" />
+    </mj-attributes>
+    <mj-style>a { color: {{ b.primary }}; } .src a { color: {{ b.muted }}; }</mj-style>
+  </mj-head>
+  <mj-body background-color="{{ b.surface }}" width="600px">
+    <mj-section background-color="{{ b.primary }}" padding="36px 24px 28px">
+      <mj-column>
+        <mj-text color="#FFFFFF" font-size="13px" letter-spacing="2px" text-transform="uppercase" padding-bottom="4px">{{ b.name|e }} · {{ c.date|e }}</mj-text>
+        <mj-text color="#FFFFFF" font-size="32px" line-height="38px" font-weight="800">{{ c.title|e }}</mj-text>
+        <mj-text color="#E0E7FF" font-size="17px">{{ c.intro|e }}</mj-text>
+      </mj-column>
+    </mj-section>
+    {% for s in c.sections %}
+    <mj-section background-color="{{ b.card }}" padding="{{ '28px 24px 8px' }}">
+      <mj-column>
+        <mj-text font-size="22px" line-height="28px" font-weight="700">{{ s.heading|e }}</mj-text>
+        {% for p in s.body %}<mj-text>{{ p|e }}</mj-text>{% endfor %}
+        {% if s.bullets %}<mj-text><ul style="padding-left:20px;margin:0">{% for x in s.bullets %}<li>{{ x|e }}</li>{% endfor %}</ul></mj-text>{% endif %}
+        {% if s.infographic %}<mj-image src="{{ image_base }}/{{ loop.index0 }}.png" alt="{{ s.infographic.alt|e }}" border-radius="12px" padding="12px 0" />{% endif %}
+        {% if s.sources %}<mj-text css-class="src" font-size="13px" color="{{ b.muted }}">Sources: {% for u in s.sources %}<a href="{{ u }}">{{ u|replace('https://','')|replace('http://','')|replace('www.','')|truncate(36, True, '…') }}</a>{{ ', ' if not loop.last }}{% endfor %}</mj-text>{% endif %}
+      </mj-column>
+    </mj-section>
+    {% endfor %}
+    <mj-section background-color="{{ b.card }}" padding="20px 24px">
+      <mj-column background-color="{{ b.surface }}" border-radius="12px" padding="8px 16px">
+        <mj-text font-size="18px" font-weight="700" padding-bottom="0">Key takeaways</mj-text>
+        <mj-text><ol style="padding-left:20px;margin:0">{% for t in c.takeaways %}<li>{{ t|e }}</li>{% endfor %}</ol></mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section padding="20px 24px">
+      <mj-column>
+        <mj-text font-size="12px" line-height="18px" color="{{ b.muted }}" align="center">
+          <a href="{{ c.footer.web_url }}">View in browser</a> · <a href="{{ c.footer.unsubscribe_url }}">Unsubscribe</a><br/>
+          {{ c.footer.address|e }}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
